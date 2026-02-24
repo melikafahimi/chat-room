@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Whispering Walls: Lobby</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+
+<body>
+    <div class = "container">
+        <h1> Chat room </h1>
+
+        <p class = "tagline">
+            {% with messages = get_flashed_messages(with_categories = true) %}
+                
+                {% if messages %}
+                    <ul class = "flashes">
+                        {% for category, message in messages %}
+                            <li class = "{{category}}"> {{message}}</li>
+                        {% endfor %}
+                    </ul>
+                {%endif%}
+            {% endwith %}
+        </p>
+
+        <form method = "POST" class = "join-form">
+            <label for ="nickname"> What's your name?</label>
+
+            <input type = "text" id="nickname" name = "nickname" placeholder = "Type..." required autofocus>
+
+            <label for "room">Choose the chatroom name..</label>
+
+            <input type = "text" id = "room" name = "room" placeholder = "Type...">
+
+            <button type = "submit"> Enter</button>
+        </form>
+
+        <p class = "footer-note">
+            Powered by Flask 
+        </p>
+    </div>
+
+
+</body>
+
+</html>
